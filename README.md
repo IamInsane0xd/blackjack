@@ -46,14 +46,20 @@ POST localhost:3001/login
 }
 ```
 
-### GET /start
+### GET /game/start
 
 Sends a signal to the server to start the game.
 
 ```http-request
-GET localhost:3001/start
+GET localhost:3001/game/start
 
 200 OK
+{
+  "dealerCardCount": 2
+  "dealerCards": ["4-S"]
+  "playerCardCount": 2
+  "playerCards": ["7-C", "A-S"]
+}
 ```
 
 [^1] API can be reached at `http://localhost:3001`
