@@ -18,6 +18,7 @@ POST localhost:3001/register
   "password": "<password>"
 }
 
+200 OK
 {
   "success": false,
   "message": "User already exists"
@@ -38,10 +39,21 @@ POST localhost:3001/login
   "password": "<password>"
 }
 
+200 OK
 {
   "success": true,
   "message": "User successfully logged in"
 }
+```
+
+### GET /start
+
+Sends a signal to the server to start the game.
+
+```http-request
+GET localhost:3001/start
+
+200 OK
 ```
 
 [^1] API can be reached at `http://localhost:3001`
