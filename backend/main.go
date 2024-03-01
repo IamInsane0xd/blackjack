@@ -1,14 +1,22 @@
 package main
 
-import "net/http"
+import (
+	"net/http"
+
+	"backend/handlers"
+	"backend/models"
+)
+
+var (
+	userStore = models.NewUserStorage()
+)
 
 func main() {
-	// Create new mux
 	mux := http.NewServeMux()
 
-	// Add handlers
+	mux.Handle("/login", handlers.NewLoginHandler(userStore))
+	mux.Handle("/register", handlers.NewRegisterHandler(userStore))
 
-	// Start server
 	if err := http.ListenAndServe("localhost:3001", mux); err != nil {
 		panic(err)
 	}
