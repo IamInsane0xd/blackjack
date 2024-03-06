@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"time"
 
 	"backend/models"
 )
@@ -50,6 +51,17 @@ func (h LoginHandler) ServeHTTP(writer http.ResponseWriter, request *http.Reques
 	if err != nil {
 		InternalServerErrorHandler(writer)
 		return
+	}
+
+	if resBody.Success {
+		cookie := http.Cookie{}
+		cookie.Name = "loggedIn"
+		cookie.Value = "true"
+		cookie.Expires = time.Now().Add(24 * time.Hour)
+		cookie.Secure = false
+		cookie.HttpOnly = true
+
+		http.SetCookie(writer, &cookie)
 	}
 
 	writer.Header().Set("Access-Control-Allow-Origin", "*")
