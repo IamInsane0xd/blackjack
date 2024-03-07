@@ -62,4 +62,24 @@ GET localhost:3001/game/start
 }
 ```
 
+### GET /forgotPassword
+
+Gets a password for a given user (most insecure forgot password method, but lazy to do an email client)
+If the user is found, the message will contain the password.
+
+*Example:*
+```http-request
+GET localhost:3001/forgotPassword
+
+{
+  "username": "<username>"
+}
+
+200 OK
+{
+  "success": true,
+  "message": "<password>"
+}
+```
+
 [^1] API can be reached at `http://localhost:3001`
